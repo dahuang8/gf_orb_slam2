@@ -394,30 +394,30 @@ ${PROJECT_NAME}
 
 # Build test cases
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/test)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/test)
 
-add_executable(testObs
-    ${SRCS}
-    ./test/test_Kine_1.cpp
-    ./test/test_Kine_2.cpp
-    ./test/test_Jacobian.cpp
-#    ./test/test_Greedy.cpp
-#    ./test/test_GoodMap.cpp
-    ./test/test_Stereo.cpp
-#    ./test/test_MapIO.cpp
-    ./test/main.cpp
-    )
-target_link_libraries(testObs
-    GL
-    glut
-    GLU
-    ${PROJECT_NAME}
-    ${GTest_LIBRARIES}
-    ${SLAM_PLUS_PLUS_LIBRARIES}
-    ${OpenBLAS_LIBRARIES}
-    ${ARMADILLO_LIBRARIES}
-    ${GTest_LIBRARIES}
-)
+# add_executable(testObs
+#     ${SRCS}
+#     ./test/test_Kine_1.cpp
+#     ./test/test_Kine_2.cpp
+#     ./test/test_Jacobian.cpp
+# #    ./test/test_Greedy.cpp
+# #    ./test/test_GoodMap.cpp
+#     ./test/test_Stereo.cpp
+# #    ./test/test_MapIO.cpp
+#     ./test/main.cpp
+#     )
+# target_link_libraries(testObs
+#     GL
+#     glut
+#     GLU
+#     ${PROJECT_NAME}
+#     ${GTest_LIBRARIES}
+#     ${SLAM_PLUS_PLUS_LIBRARIES}
+#     ${OpenBLAS_LIBRARIES}
+#     ${ARMADILLO_LIBRARIES}
+#     ${GTest_LIBRARIES}
+# )
 
 # Build exec for Jetson TX2
 #unset(CMAKE_RUNTIME_OUTPUT_DIRECTORY)
