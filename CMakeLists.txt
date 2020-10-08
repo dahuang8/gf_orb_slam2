@@ -339,6 +339,12 @@ if (GLEW_FOUND)
     link_libraries(${GLEW_LIBRARIES})
 endif()
 
+find_package(GTest REQUIRED)
+link_libraries(GTest::GTest GTest::Main)
+
+find_package(gflags REQUIRED)
+link_libraries(gflags::gflags)
+
 # Build ROS Nodes
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/ROS/GF_ORB_SLAM2)
