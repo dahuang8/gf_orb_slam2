@@ -74,8 +74,8 @@ using namespace Eigen;
 //
 // NOTE
 // For simulating closed-loop performance with open-loop benchmarks
-// By enabling PRED_WITH_ODOM, the GT trajectory is loaded and purturbed 
-// with random error.  It is then utilized as pose prediction (replacement 
+// By enabling PRED_WITH_ODOM, the GT trajectory is loaded and purturbed
+// with random error.  It is then utilized as pose prediction (replacement
 // of constant motion model) in tracking thread.
 //
 #define PRED_WITH_ODOM
@@ -84,12 +84,12 @@ using namespace Eigen;
 //
 // NOTE
 // For closed-loop navigation application ONLY
-// By ENABLE_PLANNER_PREDICTION, please make sure the the trajectory state predictor 
+// By ENABLE_PLANNER_PREDICTION, please make sure the the trajectory state predictor
 // package is included in your catkin workspace:
 // https://github.gatech.edu/ivabots/trajectory_state_predictor
 // Otherwise, you might write your own predictor by grabbing output from the controller
 //
-#define ENABLE_PLANNER_PREDICTION
+// #define ENABLE_PLANNER_PREDICTION
 
 #ifdef ENABLE_PLANNER_PREDICTION
   #include <trajectory_state_predictor/trajectory_state_predictor.h>
@@ -174,7 +174,7 @@ class System;
 
 
 class Tracking
-{  
+{
 
 public:
     Tracking(System* pSys, ORBVocabulary* pVoc, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Map* pMap,
@@ -212,15 +212,15 @@ public:
     void SetRealTimeFileStream(string fNameRealTimeTrack);
 
     void updateORBExtractor();
-    
+
     void BufferingOdom(const double & timeStamp,
                        const double & tx, const double & ty, const double & tz,
                        const double & qw, const double & qx, const double & qy, const double & qz);
-    
+
     void ResetOdomBuffer();
 
     //    void BufferingOdom(const nav_msgs::Odometry::ConstPtr& msg);
-    
+
     void PredictingOdom(const double & time_prev, const double & time_curr,
                         cv::Mat & T_se);
 
@@ -323,7 +323,7 @@ public:
     bool mbOnlyTracking;
 
 #ifdef LOCAL_SEARCH_USING_HASHING
-    
+
     inline void StoreLocalMapPointsByCoVis(const std::vector<MapPoint *> &LocalMapPoints)
     {
         mvpLocalMapPointsByCoVis.clear();
@@ -340,27 +340,27 @@ public:
     {
         return (mvpLocalMapPointsByCoVis.size()==0);
     }
-    
+
     void UpdateLocalPointsByHashing(eLocalMapSet eLocalMap);
 
     bool UpdateQueryNumByHashTable(const double time_limit);
 
 #endif
-    
+
     bool mbMapHashOTS;
     bool mbMapHashTriggered;
-    
+
     void Reset();
 
     inline void ResetInitNumFrame()
     {
         mFrameAfterInital = 0;
     }
-    
+
     inline void SetReferenceKeyFrame(KeyFrame * pKF) {
         mpReferenceKF = pKF;
     }
-    
+
     inline void SetLastKeyFrame(KeyFrame * pKF) {
         mpLastKeyFrame = pKF;
         mnLastKeyFrameId = pKF->mnId;
@@ -472,7 +472,7 @@ protected:
     std::vector<int> mvpQueriedFeatures;
     // System
     System* mpSystem;
-    
+
     //Drawers
     Viewer* mpViewer;
     FrameDrawer* mpFrameDrawer;
@@ -511,7 +511,7 @@ protected:
 
     // frame counter after initialization
     size_t mFrameAfterInital;
-    
+
     size_t nFrameSinceLast;
 
     size_t mbTrackLossAlert;
@@ -542,7 +542,7 @@ protected:
 #ifdef ENABLE_PLANNER_PREDICTION
     TrajectoryStatePredictor * mpStatePred;
 #endif
-    
+
     // planned odom for anticipation in good graph
     // 1st: timeStamp;   2nd: mTcw
     //    std::vector<std::pair<double, cv::Mat>> mvOdomPlanned;
@@ -552,13 +552,13 @@ protected:
     //    int budget_matching_in_track = 150; // 60; // 100; //
 
     std::ofstream f_realTimeTrack;
-    
+
     //
-#ifdef INIT_WITH_ARUCHO 
+#ifdef INIT_WITH_ARUCHO
     ChArUco * mpCharuco;
     cv::Mat mTw_align;
 #endif
-    
+
     std::mutex mMutexOdomBuf;
     std::vector<OdometryLog> mvOdomBuf;
     cv::Mat Tb2c, Tc2b;
