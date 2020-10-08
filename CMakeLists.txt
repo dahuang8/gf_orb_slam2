@@ -342,8 +342,8 @@ endif()
 find_package(GTest REQUIRED)
 link_libraries(GTest::GTest GTest::Main)
 
-find_package(gflags REQUIRED)
-link_libraries(gflags::gflags)
+# find_package(gflags REQUIRED)
+# link_libraries(gflags::gflags)
 
 # Build ROS Nodes
 
